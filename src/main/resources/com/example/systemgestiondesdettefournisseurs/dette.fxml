@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -10,33 +11,33 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="670.0" prefWidth="1491.0" styleClass="nav-form2" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.systemgestiondesdettefournisseurs.ControllerDette">
+<AnchorPane fx:id="Dette_form" prefHeight="670.0" prefWidth="1491.0" styleClass="nav-form2" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.systemgestiondesdettefournisseurs.ControllerDette">
    <children>
-      <Label layoutX="182.0" layoutY="42.0" prefHeight="22.0" prefWidth="104.0" stylesheets="@dashboardDesign.css" text="N° Facture :">
+      <Label layoutX="191.0" layoutY="132.0" prefHeight="22.0" prefWidth="104.0" stylesheets="@dashboardDesign.css" text="N° Facture :">
          <font>
             <Font name="Arial Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="470.0" layoutY="99.0" prefHeight="22.0" prefWidth="128.0" stylesheets="@dashboardDesign.css" text="Fournisseur :">
+      <Label layoutX="479.0" layoutY="189.0" prefHeight="22.0" prefWidth="128.0" stylesheets="@dashboardDesign.css" text="Fournisseur :">
          <font>
             <Font name="Arial Bold" size="16.0" />
          </font>
       </Label>
-      <Label layoutX="784.0" layoutY="99.0" prefHeight="22.0" prefWidth="117.0" stylesheets="@dashboardDesign.css" text="Montant Payer :">
+      <Label layoutX="793.0" layoutY="189.0" prefHeight="22.0" prefWidth="117.0" stylesheets="@dashboardDesign.css" text="Montant Payer :">
          <font>
             <Font name="Arial Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="175.0" layoutY="99.0" prefHeight="22.0" prefWidth="89.0" stylesheets="@dashboardDesign.css" text="Catégorie :">
+      <Label layoutX="169.0" layoutY="192.0" prefHeight="22.0" prefWidth="89.0" stylesheets="@dashboardDesign.css" text="Catégorie :">
          <font>
             <Font name="Arial Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="DateFacture" layoutX="571.0" layoutY="37.0" prefHeight="31.0" prefWidth="190.0" styleClass="textfield" stylesheets="@dashboardDesign.css" />
-      <TextField fx:id="Delai" layoutX="837.0" layoutY="53.0" prefHeight="29.0" prefWidth="182.0" styleClass="textfield" stylesheets="@dashboardDesign.css" />
-      <TextField fx:id="NFacture" layoutX="265.0" layoutY="38.0" prefHeight="30.0" prefWidth="190.0" styleClass="textfield" stylesheets="@dashboardDesign.css" />
-      <TextField fx:id="Categorie" layoutX="265.0" layoutY="92.0" prefHeight="30.0" prefWidth="190.0" styleClass="textfield" stylesheets="@dashboardDesign.css" />
-      <TableView fx:id="TableView_Dette" layoutX="14.0" layoutY="220.0" prefHeight="231.0" prefWidth="1453.0">
+      <TextField fx:id="DateFacture" layoutX="580.0" layoutY="127.0" prefHeight="31.0" prefWidth="190.0" styleClass="textfield" stylesheets="@dashboardDesign.css" />
+      <TextField fx:id="Delai" layoutX="846.0" layoutY="143.0" prefHeight="29.0" prefWidth="182.0" styleClass="textfield" stylesheets="@dashboardDesign.css" />
+      <TextField fx:id="NFacture" layoutX="274.0" layoutY="128.0" prefHeight="30.0" prefWidth="190.0" styleClass="textfield" stylesheets="@dashboardDesign.css" />
+      <TextField fx:id="Categorie" layoutX="274.0" layoutY="182.0" prefHeight="30.0" prefWidth="190.0" styleClass="textfield" stylesheets="@dashboardDesign.css" />
+      <TableView fx:id="TableView_Dette" layoutX="23.0" layoutY="310.0" prefHeight="231.0" prefWidth="1453.0">
          <columns>
             <TableColumn fx:id="Colum_NFacture" prefWidth="110.39999103546143" text="N° Facture" />
             <TableColumn fx:id="Colum_Categorie" prefWidth="149.6000518798828" text="Date de Facture" />
@@ -54,28 +55,30 @@
             <URL value="@dashboardDesign.css" />
          </stylesheets>
       </TableView>
-      <Label layoutX="477.0" layoutY="42.0" prefHeight="22.0" prefWidth="114.0" stylesheets="@dashboardDesign.css" text="Date Facture :">
+      <Label layoutX="486.0" layoutY="132.0" prefHeight="22.0" prefWidth="114.0" stylesheets="@dashboardDesign.css" text="Date Facture :">
          <font>
             <Font name="Arial Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="779.0" layoutY="57.0" prefHeight="22.0" prefWidth="82.0" stylesheets="@dashboardDesign.css" text="Délai :">
+      <Label layoutX="788.0" layoutY="147.0" prefHeight="22.0" prefWidth="82.0" stylesheets="@dashboardDesign.css" text="Délai :">
          <font>
             <Font name="Arial Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="MontantPayer" layoutX="893.0" layoutY="92.0" prefHeight="29.0" prefWidth="182.0" styleClass="textfield" stylesheets="@dashboardDesign.css" />
-      <Button layoutX="1131.0" layoutY="92.0" mnemonicParsing="false" onAction="#EnregistrerDette" prefHeight="29.0" prefWidth="139.0" styleClass="add-btn" text="Enregistrer">
+      <TextField fx:id="MontantPayer" layoutX="902.0" layoutY="182.0" prefHeight="29.0" prefWidth="182.0" styleClass="textfield" stylesheets="@dashboardDesign.css" />
+      <Button layoutX="1140.0" layoutY="182.0" mnemonicParsing="false" onAction="#EnregistrerDette" prefHeight="29.0" prefWidth="139.0" styleClass="add-btn" text="Enregistrer">
          <stylesheets>
             <URL value="@dashboardDesign.css" />
             <URL value="@dashboardDesign.css" />
          </stylesheets></Button>
-      <Button layoutX="1128.0" layoutY="51.0" mnemonicParsing="false" onAction="#EnregistrerDetteReset" prefHeight="26.0" prefWidth="139.0" styleClass="clear-btn" text="Annuler">
+      <Button layoutX="1137.0" layoutY="141.0" mnemonicParsing="false" onAction="#EnregistrerDetteReset" prefHeight="26.0" prefWidth="139.0" styleClass="clear-btn" text="Annuler">
          <stylesheets>
             <URL value="@dashboardDesign.css" />
             <URL value="@dashboardDesign.css" />
          </stylesheets></Button>
-      <ComboBox layoutX="578.0" layoutY="98.0" prefHeight="26.0" prefWidth="182.0" styleClass="textfield" stylesheets="@dashboardDesign.css" />
+      <ComboBox layoutX="587.0" layoutY="188.0" prefHeight="26.0" prefWidth="182.0" styleClass="textfield" stylesheets="@dashboardDesign.css" />
+      <Button fx:id="RetourAccueil" layoutX="23.0" layoutY="14.0" mnemonicParsing="false" onAction="#Btn_RetourAccueil" prefHeight="34.0" prefWidth="118.0" styleClass="nav-btn2" stylesheets="@dashboardDesign.css" text="        Retour" />
+      <FontAwesomeIcon glyphName="HOME" layoutX="36.0" layoutY="37.0" size="1.5em" />
    </children>
    <stylesheets>
       <URL value="@dashboardDesign.css" />

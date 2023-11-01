@@ -2,6 +2,8 @@ package com.example.systemgestiondesdettefournisseurs;
 
 import com.example.systemgestiondesdettefournisseurs.Models.FournisseurData;
 import com.example.systemgestiondesdettefournisseurs.Models.database;
+import com.example.systemgestiondesdettefournisseurs.Models.getData;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,6 +19,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.Optional;
@@ -31,10 +34,28 @@ import java.util.ResourceBundle;
 public class ControllerDashboard implements Initializable {
 
     @FXML
-    private Button close;
+    private AnchorPane main_form;
+
 
     @FXML
-    private AnchorPane main_form;
+    private AnchorPane addFournisseur_form;
+
+    @FXML
+    private Button Dettes_btn;
+
+    @FXML
+    private Button home_btn;
+
+    @FXML
+    private Button ReglementDette_btn;
+
+    @FXML
+    private Button Fournisseur_btn;
+
+
+    @FXML
+    private Button close;
+
 
     @FXML
     private Button minus;
@@ -98,19 +119,19 @@ public class ControllerDashboard implements Initializable {
                     || CategoriesFourn.getText().isEmpty()
                     || TelephoneFourn.getText().isEmpty()
                     || AdresseFourn.getText().isEmpty()
-                    || EmailFourn.getText().isEmpty() )
-            {
+                    || EmailFourn.getText().isEmpty()
+                    || getData.username == null || getData.password == ""){
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
                 alert.setContentText("Veuillez remplir tous les champs vides");
                 alert.showAndWait();
-            }else {
+            } else {
 
                 prepare = connect.prepareStatement(sql);
                 prepare.setString(1, NomFourn.getText());
                 prepare.setString(2, AdresseFourn.getText());
-                prepare.setString(3,(String) TelephoneFourn.getText());
+                prepare.setString(3, (String) TelephoneFourn.getText());
                 prepare.setString(4, CategoriesFourn.getText());
                 prepare.setString(5, EmailFourn.getText());
                 prepare.executeUpdate();
@@ -155,6 +176,7 @@ public class ControllerDashboard implements Initializable {
         }
         return listData;
     }
+
     private ObservableList<FournisseurData> EnregistrerFournList;
 
     public void EnregistrerFournShowListData() {
@@ -199,7 +221,7 @@ public class ControllerDashboard implements Initializable {
     public void EnregistrerFournDelete() {
 
         String sql = "DELETE FROM fournisseurs WHERE nom = '"
-                +NomFourn.getText() + "'";
+                + NomFourn.getText() + "'";
 
 
         connect = database.connectDb();
@@ -211,8 +233,7 @@ public class ControllerDashboard implements Initializable {
                     || CategoriesFourn.getText().isEmpty()
                     || TelephoneFourn.getText().isEmpty()
                     || AdresseFourn.getText().isEmpty()
-                    || EmailFourn.getText().isEmpty() )
-            {
+                    || EmailFourn.getText().isEmpty()) {
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
@@ -248,7 +269,7 @@ public class ControllerDashboard implements Initializable {
     }
 
 
-    public void EnregistrerFournUpdate(){
+    public void EnregistrerFournUpdate() {
 
         String sql = "UPDATE fournisseur SET nom = ? , Adresse = ? , Telephone = ? , Categorie = ? , Email = ?";
         connect = database.connectDb();
@@ -259,8 +280,7 @@ public class ControllerDashboard implements Initializable {
                     || CategoriesFourn.getText().isEmpty()
                     || TelephoneFourn.getText().isEmpty()
                     || AdresseFourn.getText().isEmpty()
-                    || EmailFourn.getText().isEmpty() )
-            {
+                    || EmailFourn.getText().isEmpty()) {
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
@@ -341,6 +361,69 @@ public class ControllerDashboard implements Initializable {
             e.printStackTrace();
         }
     }
+
+    public void switchForm(ActionEvent actionEvent) throws IOException {
+
+        if (actionEvent.getSource() == home_btn) {
+
+            addFournisseur_form.setVisible(false);
+
+
+            home_btn.setStyle("-fx-background-color:linear-gradient(to bottom right, #2d2d38, #7a697e);");
+            Fournisseur_btn.setStyle("-fx-background-color:transparent");
+            Dettes_btn.setStyle("-fx-background-color:transparent");
+            ReglementDette_btn.setStyle("-fx-background-color:transparent");
+
+            /*homeTotalEmployees();
+            homeEmployeeTotalPresent();
+            homeTotalInactive();
+            homeChart();*/
+
+        } else if (actionEvent.getSource() == Fournisseur_btn) {
+            addFournisseur_form.setVisible(true);
+
+
+            Fournisseur_btn.setStyle("-fx-background-color:linear-gradient(to bottom right, #2d2d38, #7a697e);");
+            home_btn.setStyle("-fx-background-color:transparent");
+
+            //addEmployeeGendernList();
+            //addEmployeePositionList();
+            //addEmployeeSearch();
+
+        } else if (actionEvent.getSource() == Dettes_btn) {
+
+            main_form.getScene().getWindow().hide();
+            Parent root = FXMLLoader.load(getClass().getResource("Dette.fxml"));
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+
+            root.setOnMousePressed((MouseEvent event) -> {
+                x = event.getSceneX();
+                y = event.getSceneY();
+            });
+
+            root.setOnMouseDragged((MouseEvent event) -> {
+                stage.setX(event.getScreenX() - x);
+                stage.setY(event.getScreenY() - y);
+
+                stage.setOpacity(.8);
+            });
+
+            root.setOnMouseReleased((MouseEvent event) -> {
+                stage.setOpacity(1);
+            });
+
+            stage.initStyle(StageStyle.TRANSPARENT);
+
+            stage.setScene(scene);
+            stage.show();
+
+
+
+
+        }
+    }
+
     @FXML
     void btn_close(ActionEvent event) {System.exit(0);}
 
@@ -366,7 +449,6 @@ public class ControllerDashboard implements Initializable {
         EnregistrerFournShowListData();
 
     }
-
 
 
 
