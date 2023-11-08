@@ -2,7 +2,6 @@ package com.example.systemgestiondesdettefournisseurs;
 
 import com.example.systemgestiondesdettefournisseurs.Models.FournisseurData;
 import com.example.systemgestiondesdettefournisseurs.Models.database;
-import com.example.systemgestiondesdettefournisseurs.Models.getData;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -120,7 +119,7 @@ public class ControllerDashboard implements Initializable {
                     || TelephoneFourn.getText().isEmpty()
                     || AdresseFourn.getText().isEmpty()
                     || EmailFourn.getText().isEmpty()
-                    || getData.username == null || getData.password == ""){
+                   ){
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);

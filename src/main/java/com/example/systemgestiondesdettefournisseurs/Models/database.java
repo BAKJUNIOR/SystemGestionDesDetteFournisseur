@@ -17,7 +17,7 @@ public class database {
 
             Class.forName("com.mysql.jdbc.Driver");
 
-            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/gestionfournisseur", "root", "");
+            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/dettefournisseur", "root", "");
             return connect;
         } catch (Exception e) {
             e.printStackTrace();
